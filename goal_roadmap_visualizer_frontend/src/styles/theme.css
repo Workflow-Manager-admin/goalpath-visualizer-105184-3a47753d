@@ -1,0 +1,200 @@
+:root {
+  --primary-color: #0057D9;
+  --secondary-color: #00C896;
+  --accent-color: #FFD700;
+  --bg-light: #f7f9fb;
+  --bg-white: #fff;
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-heavy: 0 4px 18px rgba(0, 0, 0, 0.16);
+  --border-radius: 16px;
+  --sidebar-width: 220px;
+  --header-height: 62px;
+  --modal-overlay: rgba(30,40,54,0.35);
+
+  --text-primary: #191c23;
+  --text-secondary: #555;
+}
+
+/* Main Dashboard Layout */
+.dashboard-root {
+  min-height: 100vh;
+  display: flex;
+  background: var(--bg-light);
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+/* Sidebar */
+.dashboard-sidebar {
+  width: var(--sidebar-width);
+  background: var(--primary-color);
+  color: #fff;
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+  box-shadow: var(--shadow-light);
+  padding: 22px 0 18px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .dashboard-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 64px;
+    z-index: 100;
+    border-radius: 0 20px 20px 0;
+    padding: 8px 0 8px 0;
+    min-height: 100vh;
+  }
+}
+
+/* Header */
+.dashboard-header {
+  width: 100%;
+  height: var(--header-height);
+  background: var(--bg-white);
+  box-shadow: var(--shadow-light);
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 36px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+@media (max-width: 768px) {
+  .dashboard-header {
+    padding: 0 16px 0 72px;
+    min-height: 56px;
+    font-size: 15px;
+  }
+}
+
+/* Main Section (Roadmap canvas area) */
+.dashboard-content {
+  flex: 1;
+  padding: 32px 40px;
+  min-width: 0;
+  background: var(--bg-light);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+@media (max-width: 900px) {
+  .dashboard-content {
+    padding: 18px 5vw;
+  }
+}
+@media (max-width: 600px) {
+  .dashboard-content {
+    padding: 8px 2vw;
+    gap: 16px;
+  }
+}
+
+/* Card Surface */
+.surface-card {
+  background: var(--bg-white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-heavy);
+  padding: 22px 22px 18px 22px;
+}
+
+/* Modal Dialog Components */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--modal-overlay);
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-container {
+  background: var(--bg-white);
+  border-radius: calc(var(--border-radius) + 4px);
+  box-shadow: var(--shadow-heavy);
+  max-width: 95vw;
+  min-width: 320px;
+  width: 425px;
+  margin: 32px;
+  padding: 30px 32px 26px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  animation: modal-fade-in 0.2s;
+}
+@media (max-width: 480px) {
+  .modal-container {
+    padding: 18px 8px 16px 8px;
+    width: 94vw;
+    min-width: 0;
+  }
+}
+@keyframes modal-fade-in {
+  from { opacity: 0; transform: scale(0.95);}
+  to { opacity: 1; transform: scale(1);}
+}
+
+/* Buttons */
+.btn {
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 26px;
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: var(--shadow-light);
+  transition: background 0.14s, box-shadow 0.12s, transform 0.13s;
+}
+.btn-accent {
+  background: var(--accent-color);
+  color: var(--text-primary);
+}
+.btn-secondary {
+  background: var(--secondary-color);
+  color: #fff;
+}
+.btn:hover, .btn:focus {
+  filter: brightness(0.97);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.13);
+  transform: translateY(-2px) scale(1.01);
+}
+
+/* Inputs */
+.input, textarea {
+  border: 1.5px solid #e0e6ed;
+  background: var(--bg-light);
+  padding: 10px 13px;
+  border-radius: 7px;
+  font-size: 15px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: none;
+  outline: none;
+  transition: border 0.15s, box-shadow 0.12s;
+}
+.input:focus, textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 6px rgba(0,87,217,0.09);
+}
+
+/* Misc base styles */
+.rounded {
+  border-radius: var(--border-radius);
+}
+.soft-shadow {
+  box-shadow: var(--shadow-light);
+}
+hr {
+  border: none;
+  border-bottom: 1px solid #e2e6ec;
+  margin: 18px 0;
+}
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-thumb { background: #e8eefa; border-radius: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
