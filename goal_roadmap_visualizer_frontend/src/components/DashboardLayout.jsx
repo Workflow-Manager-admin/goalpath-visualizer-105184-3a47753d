@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Sidebar from "./Sidebar";
 import TopHeader from "./TopHeader";
 import RoadmapCanvas from "./RoadmapCanvas";
+import GoalRoadmapProgress from "./GoalRoadmapProgress";
 import GoalModal from "./GoalModal";
 import "../styles/theme.css";
 
@@ -39,6 +40,11 @@ function DashboardLayout() {
     setGoals(gs => gs.map(g => g.id === goal.id ? { ...g, status: newStatus } : g));
   };
 
+  // Goal progress (for prominent progress bar)
+  const total = goals.length;
+  const done = goals.filter(g => g.status === "done").length;
+  const progress = total ? Math.round((done / total) * 100) : 0;
+
   return (
     <div className="dashboard-root">
       <Sidebar onNav={setNav} active={nav} />
@@ -47,8 +53,10 @@ function DashboardLayout() {
           nav === "roadmap" ? "Roadmap" : nav.charAt(0).toUpperCase() + nav.slice(1)
         } user={user} />
         <main className="dashboard-content">
+          {/* Prominent 'My Goal Roadmap' section */}
           {nav === "roadmap" && (
             <>
+              <GoalRoadmapProgress progress={progress} />
               <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 8 }}>
                 <button
                   className="btn btn-accent"
